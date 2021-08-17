@@ -6,7 +6,7 @@ class GameStars:
         self.reset_stats()
         self.game_active = False
         # 最高得分
-        with open(" record/high_score.txt", "r") as high:
+        with open("record/high_score.txt", "r") as high:
             self.high_score = int(high.read())
 
     def reset_stats(self):

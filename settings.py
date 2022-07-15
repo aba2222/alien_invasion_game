@@ -12,13 +12,15 @@ class Settings:
         self.ship_speed = 1.5
         self.ship_limit = 3
         # 子弹设置
-        self.bullet_width = 1000
+        self.bullet_width = 2
         self.bullet_height = 15
         self.bullet_color = 60, 60, 60
         self.bullet_allowed = 3
+        # 外星子弹速度
+        self.a_bullet_allowed = 0.6
         # 外星人设置
-        self.alien_speed_factor = 1
-        self.fleet_drop_speed = 5
+        self.alien_speed_factor = 0.5
+        self.fleet_drop_speed = 3
 
         # 以什么样的速度加快游戏
         self.speedup_scale = 1.1
@@ -32,7 +34,7 @@ class Settings:
     def initialize_dynamic_settings(self):
         self.ship_speed_factor = 1.5
         self.bullet_speed_factor = 3
-        self.alien_speed_factor = 1
+        self.alien_speed_factor = 0.5
 
         self.alien_points = 50
 

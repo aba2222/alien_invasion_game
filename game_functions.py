@@ -141,7 +141,7 @@ def check_high_score(stats, sb):
     if stats.score > stats.high_score:
         stats.high_score = stats.score
         sb.prep_high_score()
-        with open(" record/high_score.txt", "w") as high:
+        with open("record/high_score.txt", "w") as high:
             high.write(str(stats.score))
 
 

@@ -8,6 +8,7 @@ from music import Music
 from scoreboard import Scoreboard
 from settings import Settings
 from ship import Ship
+from health_point import HP
 
 
 def run_game():
@@ -19,6 +20,8 @@ def run_game():
 
     # 创建一艘飞船
     ship = Ship(ai_settings, screen)
+    #创建血量
+    hp = HP(ai_settings,screen)
     # 用于子弹的编组
     bullets = Group()
     aliens_bullets = Group()
@@ -39,12 +42,12 @@ def run_game():
         # 监视键盘和鼠标
         gf.check_events(ai_settings, screen, stats, sb, play_button, ship, aliens, bullets, music,aliens_bullets)
         gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets,
-                         play_button,aliens_bullets)
+                         play_button,aliens_bullets,hp)
 
         if stats.game_active:
             ship.update()
             gf.update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets,aliens_bullets)
             gf.update_aliens(ai_settings, stats, screen, sb, ship, aliens, bullets,aliens_bullets)
 
-
-run_game()
+if __name__=="__main__":
+    run_game()

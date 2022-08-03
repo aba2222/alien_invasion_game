@@ -8,7 +8,8 @@ class Settings:
         self.screen_height = 600
         self.bg_color = (230, 230, 230)
         # 飞船的设置
-        # 飞船速度
+        self.ship_max_hp = 100
+        self.ship_hp = self.ship_max_hp
         self.ship_speed = 1.5
         self.ship_limit = 3
         # 子弹设置
@@ -33,6 +34,7 @@ class Settings:
 
     def initialize_dynamic_settings(self):
         self.ship_speed_factor = 1.5
+        self.ship_hp = self.ship_max_hp
         self.bullet_speed_factor = 3
         self.alien_speed_factor = 0.5
 

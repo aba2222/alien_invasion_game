@@ -5,6 +5,7 @@ import pygame
 
 from alien import Alien
 from bullet import Bullet
+from health_point import HP
 
 
 def check_keydown_events(event, ai_settings, screen, ship, bullets, music):
@@ -84,10 +85,10 @@ def check_play_button(ai_settings, screen, stats, sb, play_button, ship, aliens,
 
 
 def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets,
-                  play_button,aliens_bullets):
+                  play_button,aliens_bullets,hp):
     """更新屏幕"""
     # 每次循环时都重绘屏幕
-    screen.fill(ai_settings.bg_color)
+    screen.fill(ai_settings.bg_color) 
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     for bullet in aliens_bullets.sprites():
@@ -95,6 +96,7 @@ def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets,
 
     ship.blitme()
     aliens.draw(screen)
+    hp.blitme()
 
     # 现实得分
     sb.show_score()
@@ -239,5 +241,11 @@ def update_aliens(ai_settings, stats, screen, sb, ship, aliens, bullets,aliens_b
 
     if pygame.sprite.spritecollideany(ship, aliens):
         ship_hit(ai_settings, stats, screen, sb, ship, aliens, bullets,aliens_bullets)
+    collision = pygame.sprite.spritecollideany(ship, aliens_bullets)
+    if collision:
+        ai_settings.ship_hp -= 5
+        collision.kill()
+        if ai_settings.ship_hp <= 0:
+            ship_hit(ai_settings, stats, screen, sb, ship, aliens, bullets,aliens_bullets)
 
     check_aliens_bottom(ai_settings, stats, screen, sb, ship, aliens, bullets,aliens_bullets)
